@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claw Phish V2 · documentation</title>
+  <!-- Font Awesome Icons (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f7f3ee;  /* warm base */
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+      color: #2e3b3a;
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: rgba(255, 251, 245, 0.75);
+      backdrop-filter: blur(2px);
+      border-radius: 2.5rem;
+      padding: 2.5rem 2.8rem;
+      box-shadow: 0 20px 40px -12px rgba(80, 60, 40, 0.25),
+                  0 8px 24px -6px rgba(140, 110, 80, 0.15);
+      border: 1px solid #e6ddd4;
+    }
+
+    /* blue · brown theme */
+    h1, h2, h3 {
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      color: #2b4b5c;  /* deep blue */
+      border-left: 8px solid #b48b7a; /* brown */
+      padding-left: 1.2rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+    }
+
+    h1 small {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #7c6b5e;
+      background: #ede5db;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      letter-spacing: 0.3px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: #3a5f6b;  /* blue-grey */
+      margin-top: 2.2rem;
+      margin-bottom: 1.2rem;
+      border-bottom: 3px dashed #d8cbbc;
+      padding-bottom: 0.4rem;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      color: #5d4c3e;  · brown tone
+      margin-top: 1.8rem;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+      background: #e5dbd1;
+      padding: 0.1rem 1rem 0.1rem 0.8rem;
+      border-radius: 0 20px 20px 0;
+    }
+
+    .badge-soft {
+      background: #d7cdc0;
+      color: #3f3a34;
+      font-size: 0.75rem;
+      padding: 0.15rem 0.7rem;
+      border-radius: 30px;
+      margin-left: 0.5rem;
+      font-weight: 400;
+    }
+
+    /* cards & steps */
+    .step-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 1.8rem 0 1rem;
+    }
+
+    .step-card {
+      background: #ffffffdc;
+      backdrop-filter: blur(4px);
+      border-radius: 2rem;
+      padding: 1.2rem 1.8rem;
+      border: 1px solid #dccfc2;
+      box-shadow: 0 8px 16px -10px #b7a697;
+      transition: all 0.2s;
+    }
+
+    .step-card:hover {
+      background: #fffcf9;
+      border-color: #b7a08b;
+      box-shadow: 0 12px 24px -12px #a28978;
+    }
+
+    .step-number {
+      display: inline-block;
+      background: #b9d0d9;  · soft blue
+      color: #1f3a44;
+      font-weight: 600;
+      width: 2.2rem;
+      height: 2.2rem;
+      text-align: center;
+      line-height: 2.2rem;
+      border-radius: 60%;
+      margin-right: 0.8rem;
+      font-size: 0.95rem;
+    }
+
+    .code-block {
+      background: #2a343a;
+      color: #e6f0e6;
+      padding: 0.8rem 1.2rem;
+      border-radius: 28px;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      border-left: 6px solid #b48b7a;
+      margin: 0.8rem 0 0.2rem;
+      box-shadow: inset 0 0 0 1px #5c6f73;
+    }
+
+    .inline-code {
+      background: #e9dfd5;
+      padding: 0.1rem 0.5rem;
+      border-radius: 20px;
+      font-family: monospace;
+      color: #2b4b4a;
+      font-size: 0.9rem;
+    }
+
+    .icon-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem 2.2rem;
+      justify-content: center;
+      padding: 1.8rem 0.5rem 0.8rem;
+      border-top: 2px dotted #d6c7b8;
+      margin-top: 2.2rem;
+    }
+
+    .icon-row a {
+      color: #3d5a5e;
+      font-size: 1.4rem;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+      background: #f2ebe3;
+      padding: 0.3rem 1rem 0.3rem 0.8rem;
+      border-radius: 60px;
+      border: 1px solid #d6c3b2;
+      font-size: 1rem;
+    }
+
+    .icon-row a i {
+      font-size: 1.8rem;
+      width: 2rem;
+      color: #3b5f64;
+    }
+
+    .icon-row a:hover {
+      background: #e5d8cb;
+      border-color: #b48b7a;
+      color: #1f3d3f;
+      transform: scale(1.02);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.8rem 1.2rem;
+      background: #f2ece4;
+      padding: 1.4rem 1.8rem;
+      border-radius: 3rem;
+      margin: 1.2rem 0;
+      border: 1px solid #dacfc2;
+    }
+
+    .feature-grid span {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.95rem;
+      color: #2d464a;
+    }
+
+    .feature-grid i {
+      color: #7f6b5a;
+      width: 1.6rem;
+      font-size: 1.1rem;
+    }
+
+    .footer-note {
+      margin-top: 2.8rem;
+      background: #e7dbd0;
+      border-radius: 60px;
+      padding: 1.2rem 2rem;
+      text-align: center;
+      font-size: 0.95rem;
+      border: 1px solid #cbb8a6;
+      color: #2e3f3e;
+    }
+
+    .footer-note i {
+      color: #8d6b58;
+      margin: 0 0.3rem;
+    }
+
+    @media (max-width: 700px) {
+      .container { padding: 1.8rem 1.2rem; }
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.6rem; }
+      .step-card { padding: 1rem 1.2rem; }
+      .icon-row a { font-size: 0.9rem; padding: 0.2rem 0.8rem; }
+    }
+
+    /* childlish / playful touches */
+    .dot-pattern {
+      background: radial-gradient(circle at 20% 30%, #e3d6c8 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    .btn-ghost {
+      display: inline-block;
+      background: #d7cdbf;
+      padding: 0.1rem 1rem;
+      border-radius: 60px;
+      color: #2f4a4a;
+      font-size: 0.8rem;
+      margin-left: 0.5rem;
+    }
+
+    .highlight-blue {
+      background: #c5dbe3;
+      padding: 0.1rem 0.5rem;
+      border-radius: 20px;
+      color: #1e3d45;
+    }
+
+  </style>
+</head>
+<body>
+<div class="container dot-pattern">
+  
+  <!-- header -->
+  <header style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap;">
+    <div>
+      <h1>
+        <i class="fas fa-paw" style="color: #8f7a68; font-size: 2.2rem; margin-right: 0.2rem;"></i>
+        Claw Phish V2
+        <small>documentation v2.6</small>
+      </h1>
+      <p style="font-size: 1.1rem; color: #4d5f5d; max-width: 780px; background: #ece3da; padding: 0.3rem 1.5rem; border-radius: 60px; display: inline-block;">
+        <i class="fas fa-shield-alt" style="color: #6b7f7a;"></i> 
+        authorized · ethical · defensive security
+      </p>
+    </div>
+    <div style="margin-top: 0.4rem;">
+      <span class="badge-soft"><i class="fas fa-check-circle"></i> v2.0 stable</span>
+      <span class="badge-soft"><i class="fas fa-lock"></i> ethical use only</span>
+    </div>
+  </header>
+
+  <!-- tagline -->
+  <div style="margin: 0.8rem 0 1.2rem; background: #ebe0d5; border-radius: 40px; padding: 0.4rem 1.6rem; display: inline-block;">
+    <i class="fas fa-feather-alt" style="color: #6d5b4b;"></i> 
+    <span style="font-weight: 400;">penetration testing · phishing sim · cyber drills · research · education</span>
+  </div>
+
+  <!-- quick connect: X, Discord, Slack, Telegram, Github -->
+  <div class="icon-row">
+    <a href="https://x.com/accurate_mw"><i class="fab fa-twitter"></i> X</a>
+    <a href="#"><i class="fab fa-discord"></i> Discord</a>
+    <a href="#"><i class="fab fa-slack"></i> Slack</a>
+    <a href="#"><i class="fab fa-telegram"></i> Telegram</a>
+    <a href="https://github.com/Iankulani/claw_phish_v2"><i class="fab fa-github"></i> GitHub</a>
+  </div>
+
+  <!-- installation steps -->
+  <h2><i class="fas fa-download" style="color: #7f6f5e;"></i> Installation guide · step by step</h2>
+  <p style="margin-bottom: 0.8rem; background: #edf0ec; padding: 0.4rem 1.2rem; border-radius: 60px; display: inline-block; font-size: 0.95rem;">
+    <i class="fas fa-info-circle" style="color: #4d6d70;"></i> 
+    Claw Phish V2 runs on Linux (Debian/Ubuntu, RHEL) & macOS · see <span class="inline-code">docs/requirements</span>
+  </p>
+
+  <div class="step-grid">
+    <!-- step 1 -->
+    <div class="step-card">
+      <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 0.3rem 0.8rem;">
+        <span class="step-number">1</span>
+        <span style="font-weight: 500; font-size: 1.2rem;">Clone the repository</span>
+        <span class="btn-ghost"><i class="fas fa-code-branch"></i> git</span>
+      </div>
+      <div class="code-block">
+        git clone https://github.com/Iankulani/claw_phish_v2.git
+        cd claw_phish_v2
+      </div>
+      <div style="margin-top: 0.4rem; font-size: 0.9rem; color: #4f5f5a;">
+        <i class="fas fa-folder-open" style="color: #9a8878;"></i> 
+        Repository includes: <span class="highlight-blue">core/</span> <span class="highlight-blue">modules/</span> <span class="highlight-blue">campaigns/</span> <span class="highlight-blue">reports/</span>
+      </div>
+    </div>
+
+    <!-- step 2 -->
+    <div class="step-card">
+      <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 0.3rem 0.8rem;">
+        <span class="step-number">2</span>
+        <span style="font-weight: 500; font-size: 1.2rem;">Set up Python environment</span>
+        <span class="btn-ghost"><i class="fab fa-python"></i> 3.10+</span>
+      </div>
+      <div class="code-block">
+        python3 -m venv claw-env
+        source claw-env/bin/activate
+        pip install --upgrade pip
+        pip install -r requirements.txt
+      </div>
+      <div style="margin-top: 0.3rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+        <span><i class="fas fa-check-circle" style="color: #58857a;"></i> deps: flask, requests, beautifulsoup4, nmap, scrapy, etc.</span>
+        <span><i class="fas fa-microchip"></i> optional: <span class="inline-code">--extra-index</span> for GPU modules</span>
+      </div>
+    </div>
+
+    <!-- step 3 -->
+    <div class="step-card">
+      <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 0.3rem 0.8rem;">
+        <span class="step-number">3</span>
+        <span style="font-weight: 500; font-size: 1.2rem;">Configure database & environment</span>
+        <span class="btn-ghost"><i class="fas fa-database"></i> PostgreSQL / SQLite</span>
+      </div>
+      <div class="code-block">
+        cp .env.example .env
+        # edit .env: set DB_URI, SECRET_KEY, SMTP settings
+        python manage.py db upgrade
+      </div>
+      <div style="margin-top: 0.3rem;">
+        <i class="fas fa-key" style="color: #87715e;"></i> 
+        Generate secret: <span class="inline-code">python -c "import secrets; print(secrets.token_urlsafe(32))"</span>
+      </div>
+    </div>
+
+    <!-- step 4 -->
+    <div class="step-card">
+      <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 0.3rem 0.8rem;">
+        <span class="step-number">4</span>
+        <span style="font-weight: 500; font-size: 1.2rem;">Initialize modules & assets</span>
+        <span class="btn-ghost"><i class="fas fa-cubes"></i> campaign templates</span>
+      </div>
+      <div class="code-block">
+        python clawctl.py init --all
+        # or: python clawctl.py init --modules web,network,phishing,drills
+      </div>
+      <div style="display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 0.3rem;">
+        <span><i class="fas fa-flag"></i> phishing templates: <span class="inline-code">assets/templates/</span></span>
+        <span><i class="fas fa-network-wired"></i> wordlists: <span class="inline-code">assets/wordlists/</span></span>
+      </div>
+    </div>
+
+    <!-- step 5 -->
+    <div class="step-card">
+      <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 0.3rem 0.8rem;">
+        <span class="step-number">5</span>
+        <span style="font-weight: 500; font-size: 1.2rem;">Run Claw Phish V2</span>
+        <span class="btn-ghost"><i class="fas fa-play"></i> production</span>
+      </div>
+      <div class="code-block">
+        python clawctl.py run --host 0.0.0.0 --port 5000
+        # or with gunicorn: gunicorn -w 4 'clawphish:create_app()'
+      </div>
+      <div style="margin-top: 0.3rem; background: #e2d9cf; padding: 0.2rem 1rem; border-radius: 30px; display: inline-block;">
+        <i class="fas fa-globe"></i> access UI: <span class="inline-code">http://localhost:5000</span>  ·  default admin: <span class="inline-code">admin@claw.local</span> / <span class="inline-code">ChangeMe123!</span>
+      </div>
+    </div>
+
+    <!-- step 6 : post-install -->
+    <div class="step-card" style="border-left: 6px solid #6d8b8a;">
+      <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 0.3rem 0.8rem;">
+        <span class="step-number" style="background: #b5cccb;">6</span>
+        <span style="font-weight: 500; font-size: 1.2rem;">Post‑install: first campaign & drills</span>
+        <span class="btn-ghost"><i class="fas fa-rocket"></i> ready</span>
+      </div>
+      <div>
+        <p style="margin: 0.2rem 0 0.2rem;"><i class="fas fa-check-circle" style="color: #528a7a;"></i>  ·  Validate installation: <span class="inline-code">python clawctl.py health</span></p>
+        <p style="margin: 0.1rem 0;"><i class="fas fa-flag"></i>  ·  Create a phishing campaign: <span class="inline-code">python clawctl.py campaign create --name "Q2 awareness"</span></p>
+        <p style="margin: 0.1rem 0;"><i class="fas fa-shield"></i>  ·  Launch network scan: <span class="inline-code">python clawctl.py scan --target 192.168.1.0/24</span></p>
+        <p style="margin: 0.1rem 0 0.3rem;"><i class="fas fa-users"></i>  ·  Invite team members via <span class="inline-code">settings → users</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- feature cloud -->
+  <h2 style="margin-top: 0.8rem;"><i class="fas fa-cloud" style="color: #80705e;"></i> Capabilities at a glance</h2>
+  <div class="feature-grid">
+    <span><i class="fas fa-crosshairs"></i> network pentest</span>
+    <span><i class="fas fa-globe"></i> web app sec</span>
+    <span><i class="fas fa-lock"></i> API assessment</span>
+    <span><i class="fas fa-wifi"></i> wireless audit</span>
+    <span><i class="fas fa-envelope"></i> phishing sim</span>
+    <span><i class="fas fa-chart-line"></i> campaign analytics</span>
+    <span><i class="fas fa-user-shield"></i> awareness training</span>
+    <span><i class="fas fa-sitemap"></i> asset discovery</span>
+    <span><i class="fas fa-bug"></i> vuln validation</span>
+    <span><i class="fas fa-file-alt"></i> compliance reporting</span>
+    <span><i class="fas fa-users-cog"></i> tabletop drills</span>
+    <span><i class="fas fa-database"></i> security research</span>
+  </div>
+
+  <!-- extra: quick notes -->
+  <div style="background: #dee6e0; border-radius: 60px; padding: 0.6rem 1.8rem; margin: 1rem 0 0.2rem; display: flex; flex-wrap: wrap; gap: 0.5rem 2rem;">
+    <span><i class="fas fa-check-double" style="color: #48746b;"></i> ethical · authorized only</span>
+    <span><i class="fas fa-book"></i> education & research</span>
+    <span><i class="fas fa-project-diagram"></i> red team / blue team</span>
+    <span><i class="fas fa-tachometer-alt"></i> executive dashboards</span>
+  </div>
+
+  <!-- footer / disclaimer -->
+  <div class="footer-note">
+    <i class="fas fa-balance-scale-left"></i> 
+    Claw Phish V2 is designed for authorized security testing and awareness. 
+    All assessments must have explicit written permission. 
+    <i class="fas fa-shield" style="margin-left: 0.8rem;"></i>
+    <span style="display: inline-block; background: #cfc1b2; padding: 0 1rem; border-radius: 60px; margin-left: 0.4rem;">
+      <i class="fas fa-graduation-cap"></i> cyber defense · education
+    </span>
+    <br>
+    <span style="font-size: 0.8rem; opacity: 0.8; display: inline-block; margin-top: 0.3rem;">
+      <i class="fab fa-github"></i> github.com/claw_phish_V2 · 
+      <i class="fab fa-twitter"></i> @clawphish · 
+      <i class="fas fa-envelope"></i>accuratecyberdefense@tutamail.com
+    </span>
+  </div>
+
+  <!-- tiny extra: mind-cool colors (white/brown/childlish) -->
+  <div style="display: flex; justify-content: center; gap: 0.8rem; margin-top: 0.6rem; opacity: 0.5; font-size: 0.7rem;">
+    <span style="background: #f5f0ea; padding: 0 1rem; border-radius: 40px;">☁️ white</span>
+    <span style="background: #b19581; padding: 0 1rem; border-radius: 40px; color: #f4ede6;">🤎 brown</span>
+    <span style="background: #cfdde3; padding: 0 1rem; border-radius: 40px;">🧸 cybersecurity</span>
+    <span style="background: #bccfc7; padding: 0 1rem; border-radius: 40px;">🌿 calm</span>
+  </div>
+</div>
+</body>
+</html>
