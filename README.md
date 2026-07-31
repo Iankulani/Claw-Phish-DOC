@@ -1,2 +1,16 @@
 # Claw-Phish-DOC
 Claw Phish Documentation
+
+
+# How to clone
+```bash
+git clone https://github.com/Iankulani/Claw-Phish-DOC.git
+cd Claw-Phish-DOC
+```
+
+
+# How to run
+```bash
+
+
+  
